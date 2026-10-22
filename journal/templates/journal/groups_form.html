@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if group %}
+        Редактирование группы
+    {% else %}
+        Добавить новую группу
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h2>
+        {% if group %}
+            Редактирование группы: {{ group.name }}
+            <hr style="margin: 20px 0">
+            <a href="{% url 'group_delete' group_id=group.id %}" style="color: red;">удалить группу</a>
+        {% else %}
+            Добавить новую группу
+        {% endif %}
+
+
+
+    </h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+
+{% endblock %}

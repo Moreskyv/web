@@ -1,0 +1,25 @@
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    width: 80%;
+    max-width: 960px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+
+header, footer {
+    text-align: center;
+    padding: 10px 0;
+}
+nav a {
+    text-decoration: none;
+    color: #007BFF;
+    margin: 0 10px;
+}
+
+main h2 {
+    color: #555;
+}
+

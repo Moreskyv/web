@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Журнал группы: {{ group.name }}{% endblock %}
+
+{% block content %}
+    <h2>Журнал группы "{{ group.name }}"</h2>
+
+    <hr style="margin: 20px 0;">
+
+    <h3>Выставить оценку</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Добавить оценку</button>
+    </form>
+
+    <hr style="margin: 20px 0;">
+
+    <h3>Успеваемость</h3>
+
+    {% if students %}
+        <table border="1" style="width: 100%; border-collapse: collapse">
+            <thead>
+                <tr>
+                    <th>Студент</th>
+                    <th>Предмет</th>
+                    <th>Оценка</th>
+                    <th>Дата</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for grade in grades %}
+                <tr>
+                    <td style="padding: 5px">{{ grade.student }}</td>
+                    <td style="padding: 5px">{{ grade.subject }}</td>
+                    <td style="padding: 5px">{{ grade.value }}</td>
+                    <td style="padding: 5px">{{ grade.date }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4" style="text-align: center; padding: 10px;">Оценок в этой группе пока нет.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>В этой группе пока нет студентов.</p>
+    {% endif %}
+
+    <hr style="margin: 20px 0;">
+    <a href="{% url 'groups' %}">Назад к списку групп</a>
+
+{% endblock %}

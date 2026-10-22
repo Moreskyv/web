@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}{{ page_title }} - Электронный журнал {% endblock %}
+{% block content %}
+<style>
+    a {
+        text-decoration: none;
+        color: #1b1b1b;
+    }
+
+</style>
+    <h2>{{page_title}}</h2>
+
+    <p>Ниже предствлен список только активных групп: </p>
+    <ul>
+            {% for group in groups_list %}
+                   <li><a href="{% url 'group_detail' pk=group.pk %}">{{group}}</a></li>
+                {% empty %}
+                    <li>Список групп пуст.</li>
+                {% endfor %}
+
+    </ul>
+<br>
+<a href="{% url 'group_add' %}">Добавить новую группу</a>
+{% endblock %}

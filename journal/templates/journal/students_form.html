@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить новую группу{% endblock %}
+
+{% block content %}
+<style>
+    a {
+        text-decoration: none;
+        color: #1b1b1b;
+    }
+
+</style>
+    <style>
+
+        button {
+            width: fit-content;
+            min-width: 100px;
+            height: 45px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 2.5px solid #E0E1E4;
+            box-shadow: 0px 0px 20px -20px;
+            cursor: pointer;
+            background-color: white;
+            transition: all 0.2s ease-in-out 0ms;
+            user-select: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        button:hover {
+            background-color: #F2F2F2;
+            box-shadow: 0px 0px 20px -18px;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+
+        {% if student %}
+    <hr style="margin: 20px 0">
+    <a href="{% url 'student_delete' student.id %}" style="color: red;">удалить студента</a>
+{% else %}
+        {% endif %}
+    <h2>Добавить нового студента</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+<br>
+    <a href="{% url 'students' %}" style="padding-top: 20px">Назад к списку студентов</a>
+{% endblock %}

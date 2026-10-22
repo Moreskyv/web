@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}{{ page_title }} - Электронный журнал {% endblock %}
+{% block content %}
+<style>
+    a {
+        text-decoration: none;
+        color: #1b1b1b;
+    }
+
+</style>
+    <h2>{{page_title}}</h2>
+
+    <p>Ниже предствлен список студентов: </p>
+    <ul>
+            {% for student in students_list %}
+                     <li><a href="{% url 'student_detail' student_id=student.id %}">{{student}}</a></li>
+                {% empty %}
+                    <li>Список студентов пуст.</li>
+        {% endfor %}
+
+    </ul>
+
+    <a href="/students/add">Добавить студента</a>
+{% endblock %}
+
